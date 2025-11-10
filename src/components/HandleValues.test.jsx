@@ -1,45 +1,65 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import HandleValues from "./HandleValues";
 
-describe("HandleValues", () => {
-  let testData;
+// Opgave 1
+// - Skriv tests for en funktion, der håndterer både tal, strenge og null-værdier.
+// - Sørg for at dække både gyldige og ugyldige input.
+describe("HandleValues tests", () => {
 
-  beforeEach(() => {
-    testData = null;
-  });
-  afterEach(() => {
-    testData = null;
-  });
+    // Opgave 2
+    // - Brug `beforeEach` til at opsætte testdata og `afterEach` til at rydde op.
+    let testData;
 
-  it("should handle null values", () => {
-    expect(HandleValues(testData)).toBe("No value");
-  });
+    beforeEach(() => {
+        testData = null;
+    });
+    afterEach(() => {
+        testData = null;
+    });
 
-  it("should handle valid numbers", () => {
-    testData = 4;
-    expect(HandleValues(testData)).toBe("Number: 4");
-  });
+    // - Organisér dine tests i grupper med `describe`.
 
-  it("should handle NaN", () => {
-    testData = NaN;
-    expect(HandleValues(testData)).toBe("Invalid number");
-  });
+    // numbers
+    describe("HandleValues numbers", () => {
+        it("should handle valid numbers", () => {
+            testData = 4;
+            expect(HandleValues(testData)).toBe("Number: 4");
+        });
 
-  it("should handle valid strings", () => {
-    testData = "Hello";
-    expect(HandleValues(testData)).toBe("String: Hello");
-  });
+        it("should handle NaN / invalid numbers", () => {
+            testData = NaN;
+            expect(HandleValues(testData)).toBe("Invalid number");
+        });
+    })
 
-  it("should handle empty strings", () => {
-    testData = "";
-    expect(HandleValues(testData)).toBe("Empty string");
-    testData = "  ";
-    expect(HandleValues(testData)).toBe("Empty string");
-  });
+    // strings
+    describe("HandleValues strings", () => {
+        it("should handle valid strings", () => {
+            testData = "Hello";
+            expect(HandleValues(testData)).toBe("String: Hello");
+        });
 
-  it("should not fail on unexpected types", () => {
-    testData = { key: "value" };
-    expect(HandleValues(testData)).toBe("Unknown type");
-  });
+        it("should handle empty strings or white space strings", () => {
+            testData = "";
+            expect(HandleValues(testData)).toBe("Empty string");
+            testData = "  ";
+            expect(HandleValues(testData)).toBe("Empty string");
+        });
+    });
+
+    // null values
+    describe("HandleValues null", () => {
+        it("should handle null values", () => {
+            expect(HandleValues(testData)).toBe("No value");
+        });
+    });
+    
+    // unknown types
+    describe("HandleValues unknown types", () => {
+        it("should not fail on unexpected types", () => {
+            testData = { key: "value" };
+            expect(HandleValues(testData)).toBe("Unknown type");
+        });
+    });
 
 });
