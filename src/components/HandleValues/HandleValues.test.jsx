@@ -4,23 +4,24 @@ import HandleValues from "./HandleValues";
 // Opgave 1
 // - Skriv tests for en funktion, der håndterer både tal, strenge og null-værdier.
 // - Sørg for at dække både gyldige og ugyldige input.
-describe("HandleValues tests", () => {
+describe("HandleValues Component", () => {
 
     // Opgave 2
     // - Brug `beforeEach` til at opsætte testdata og `afterEach` til at rydde op.
-    let testData;
-
-    beforeEach(() => {
-        testData = null;
-    });
-    afterEach(() => {
-        testData = null;
-    });
-
     // - Organisér dine tests i grupper med `describe`.
+
+    let testData;
 
     // numbers
     describe("HandleValues numbers", () => {
+
+        beforeEach(() => {
+            testData = null;
+        });
+        afterEach(() => {
+            testData = null;
+        });
+
         it("should handle valid numbers", () => {
             testData = 4;
             expect(HandleValues(testData)).toBe("Number: 4");
@@ -34,6 +35,14 @@ describe("HandleValues tests", () => {
 
     // strings
     describe("HandleValues strings", () => {
+
+        beforeEach(() => {
+            testData = null;
+        });
+        afterEach(() => {
+            testData = null;
+        });
+
         it("should handle valid strings", () => {
             testData = "Hello";
             expect(HandleValues(testData)).toBe("String: Hello");
@@ -49,6 +58,14 @@ describe("HandleValues tests", () => {
 
     // null values
     describe("HandleValues null", () => {
+
+        beforeEach(() => {
+            testData = null;
+        });
+        afterEach(() => {
+            testData = null;
+        });
+
         it("should handle null values", () => {
             expect(HandleValues(testData)).toBe("No value");
         });
@@ -56,6 +73,14 @@ describe("HandleValues tests", () => {
     
     // unknown types
     describe("HandleValues unknown types", () => {
+
+        beforeEach(() => {
+            testData = null;
+        });
+        afterEach(() => {
+            testData = null;
+        });
+
         it("should not fail on unexpected types", () => {
             testData = { key: "value" };
             expect(HandleValues(testData)).toBe("Unknown type");
